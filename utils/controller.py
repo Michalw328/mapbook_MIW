@@ -1,3 +1,9 @@
+import folium
+import requests
+from bs4 import BeautifulSoup
+
+from notatnik import get_coordinates
+
 
 def get_user_info(users_data: list) -> None:
     for user in users_data:
@@ -25,3 +31,17 @@ def update_user(users_data: list[dict]) -> None:
             user["name"] = input("Podaj nowe imię znajomego: ")
             user["location"] = input("Podaj nową miejscowość: ")
             user["posts"] = int(input("Podaj nową liczbę postów: "))
+
+
+
+
+def get_map (users_data:list)->None:
+    mapa = folium.Map([52.3, 21.00], zoom_start=6)
+    for user in users_data:
+         folium.Marker(
+            location=get_coordinates(city_name=user["location"]),
+            popup=f'{user["name"]}<br/>{user["location"]}<br/>{user["posts"]}'
+              f'<br/><img src="{user["picture"]}" alt="{user["picture"]}"/>',
+        ).add_to(mapa)
+
+    mapa.save("mapa.html")
