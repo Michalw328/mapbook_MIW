@@ -1,18 +1,18 @@
 from utils.model import users
-from utils.controller import get_user_info, add_user, remove_user,update_user
+from utils.controller import get_user_info, add_user, remove_user, update_user
 
 
 def main():
     print(f"Witaj {users[0]["name"]}")
 
     while True:
-        print("===============MENU================")
+        print("============MENU==============")
         print("0 - Zakończ pracę programu")
         print("1 - Pokaż co u moich znajomych")
         print("2 - Dodaj znajomego")
         print("3 - Usuń znajomego")
         print("4 - Edytuj dane znajomego")
-        print("===================================")
+        print("==============================")
         choice: str = input("Wybierz opcję menu: ")
         if choice == "0": break
         if choice == "1": get_user_info(users[1:])
